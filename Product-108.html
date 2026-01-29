@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>تفاصيل المنتج - شامبو غارنييه ألترا دو بحليب اللوز</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+</head>
+
+<body class="bg-gray-50">
+
+    <div class="container mx-auto py-10 px-4">
+        <a href="index.html" class="text-blue-600 mb-6 inline-block font-bold">← العودة للرئيسية</a>
+
+        <div class="flex flex-col md:flex-row bg-white rounded-xl shadow-lg overflow-hidden">
+            <div class="md:w-1/2 p-4">
+                <img id="main-view" src="" class="w-full h-96 object-contain bg-gray-100 rounded-lg mb-4 shadow-sm">
+                <div id="thumbnails" class="flex gap-2 overflow-x-auto pb-2">
+                </div>
+            </div>
+
+            <div class="md:w-1/2 p-8">
+                <h1 id="prod-name" class="text-3xl font-bold mb-4 text-gray-800 border-b pb-4"></h1>
+                <p id="prod-price" class="text-2xl text-green-600 font-bold mb-6"></p>
+
+                <h3 class="font-bold mb-2">وصف المنتج:</h3>
+                <div id="prod-desc" class="text-gray-600 leading-relaxed mb-8 whitespace-pre-line">
+                </div>
+
+                <button
+                    class="w-full md:w-auto bg-green-600 hover:bg-green-700 text-white px-10 py-4 rounded-lg font-bold shadow-md transition-all">
+                    تواصل لطلب المنتج
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // بيانات المنتج رقم 108 (Garnier Ultra Doux Nurturing Almond Milk & Agave Sap)
+        const productData = {
+            name: "غارنييه ألترا دو (Ultra Doux) شامبو حليب اللوز المغذي ونكتار الأغاف - 600 مل",
+            price: "السعر حسب العرض",
+            desc: `خلطتنا المُرطبة لشعر رطب و أكثر نعومة دون إثقال!
+يجمع شامبو غارنييه ألترا دو (Garnier Ultra Doux Hydrating Shampoo) بين حليب اللوز العضوي المغذي، ونكتار الأغاف المنعش المستخرج من قلب المكسيك. صُممت هذه الوصفة خصيصاً لتناسب جميع أنواع الشعر، حيث توفر ترطيباً عميقاً يعيد الحيوية واللمعان لخصلات شعرك.
+
+مميزات المنتج:
+- حليب اللوز العضوي: مكون طبيعي غني يعمل على تغذية الشعر وترطيبه بلطف.
+- نكتار الأغاف الحيوي: معروف بخصائصه المرممة والمنعشة التي تعيد الحيوية للشعر دون إثقاله.
+- خالي من السيليكون: يمنح شعرك ملمساً طبيعياً ومنسدلاً دون ترسبات كيميائية مزعجة.
+- مناسب لجميع أنواع الشعر: تركيبة لطيفة ومتوازنة تصلح للاستخدام اليومي لكافة أفراد العائلة.
+- تركيبة نباتية 100%: خالية تماماً من أي مكونات من أصل حيواني.
+- حجم 600 مل: عبوة اقتصادية توفر العناية اللازمة لفترات طويلة.
+- التزام غارنييه بالجمال الأخضر: عبوة مصنوعة من بلاستيك معاد تدويره بنسبة 100% وقابلة لإعادة التدوير.
+
+طريقة الاستخدام:
+ضعي كمية مناسبة على شعرك المبلل، دلكي فروة الرأس بلطف حتى تتكون رغوة غنية، ثم اشطفي شعرك جيداً بالماء. استمتعي بشعر رطب، ناعم، ومعطر برائحة اللوز المنعشة.`,
+
+            images: [
+                "images/108-garnier-ultradoux-almond-milk/P108-1.jpg",
+                "images/108-garnier-ultradoux-almond-milk/P108-2.jpg"
+            ]
+        };
+
+        // توزيع البيانات على العناصر
+        document.getElementById('prod-name').innerText = productData.name;
+        document.getElementById('prod-price').innerText = productData.price;
+        document.getElementById('prod-desc').innerText = productData.desc;
+        document.getElementById('main-view').src = productData.images[0];
+
+        // توليد الصور المصغرة ديناميكياً
+        const thumbContainer = document.getElementById('thumbnails');
+        productData.images.forEach(imgUrl => {
+            const imgTag = document.createElement('img');
+            imgTag.src = imgUrl;
+            imgTag.className = "w-20 h-20 object-cover cursor-pointer border-2 border-transparent hover:border-green-500 rounded-md transition-all";
+            imgTag.onclick = () => {
+                document.getElementById('main-view').src = imgUrl;
+            };
+            thumbContainer.appendChild(imgTag);
+        });
+    </script>
+</body>
+
+</html>

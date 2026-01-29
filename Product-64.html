@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>تفاصيل المنتج - غارنييه هير فود بالصبار</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+</head>
+
+<body class="bg-gray-50">
+
+    <div class="container mx-auto py-10 px-4">
+        <a href="index.html" class="text-blue-600 mb-6 inline-block font-bold">← العودة للرئيسية</a>
+
+        <div class="flex flex-col md:flex-row bg-white rounded-xl shadow-lg overflow-hidden">
+            <div class="md:w-1/2 p-4">
+                <img id="main-view" src="" class="w-full h-96 object-contain bg-gray-100 rounded-lg mb-4 shadow-sm">
+                <div id="thumbnails" class="flex gap-2 overflow-x-auto pb-2">
+                </div>
+            </div>
+
+            <div class="md:w-1/2 p-8">
+                <h1 id="prod-name" class="text-3xl font-bold mb-4 text-gray-800 border-b pb-4"></h1>
+                <p id="prod-price" class="text-2xl text-green-600 font-bold mb-6"></p>
+
+                <h3 class="font-bold mb-2">وصف المنتج:</h3>
+                <div id="prod-desc" class="text-gray-600 leading-relaxed mb-8 whitespace-pre-line">
+                </div>
+
+                <button
+                    class="w-full md:w-auto bg-green-600 hover:bg-green-700 text-white px-10 py-4 rounded-lg font-bold shadow-md transition-all">
+                    تواصل لطلب المنتج
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // بيانات المنتج رقم 64 (Garnier Fructis Aloe Vera Hair Food)
+        const productData = {
+            name: "غارنييه هير فود (Hair Food) بالصبار لتنقية وترطيب الشعر - 3 في 1 - 390 مل",
+            price: "السعر حسب العرض",
+            desc: `الحل الأمثل لترطيب شعرك بعمق دون إثقاله!
+يعد غارنييه هير فود بالصبار (Garnier Hair Food Aloe Vera) ابتكاراً رائعاً للشعر العادي إلى الجاف، حيث يعتمد على تركيبة طبيعية الأصل بنسبة 97% لتمنح شعرك ترطيباً مكثفاً يدوم حتى 100 ساعة. هذا المنتج المتعدد الاستخدامات يعمل كحمام زيت، ماسك، وكريم يترك على الشعر ليمنحه نعومة فائقة ولمعاناً صحياً.
+
+مميزات المنتج:
+- ترطيب يدوم 100 ساعة: تركيبة مركزة توفر رطوبة عميقة ومستمرة لخصلات شعرك.
+- 97% أصل طبيعي: مكونات نباتية مستمدة من الطبيعة لضمان عناية صحية وآمنة.
+- منتج 3 في 1: يمكن استخدامه كحمام زيت (Hot Oil Bath)، ماسك مغذي، أو كريم يترك على الشعر (Leave-in Cream).
+- تركيبة فيتامينات غنية: معزز بفيتامينات C و E و F لتقوية ألياف الشعر وتنشيط لمعانه.
+- مركب مغذي بنسبة 13%: يحتوي على أوميجا 3 و 6 و 9 وزبدة الشيا والأحماض الدهنية لترطيب مكثف ومنع التجعد.
+- تركيبة نباتية (Vegan): خالية من المكونات الحيوانية ومعتمدة كمنتج خالٍ من القسوة تجاه الحيوان.
+- الحجم: عبوة اقتصادية كبيرة بحجم 390 مل.
+
+طريقة الاستخدام:
+1. كحمام زيت: يوضع على شعر جاف ويدلك، ثم يغسل بالشامبو.
+2. كماسك: يوضع على شعر مبلل بعد الشامبو لمدة 3 دقائق ثم يشطف.
+3. ككريم يترك على الشعر: توضع كمية صغيرة على طول الشعر المبلل أو الجاف لترطيب فائق وسهولة في التصفيف.`,
+
+            images: [
+                "images/64-garnier-hairfood-aloe/P64-1.jpg",
+                "images/64-garnier-hairfood-aloe/P64-2.jpg"
+            ]
+        };
+
+        // توزيع البيانات على العناصر
+        document.getElementById('prod-name').innerText = productData.name;
+        document.getElementById('prod-price').innerText = productData.price;
+        document.getElementById('prod-desc').innerText = productData.desc;
+        document.getElementById('main-view').src = productData.images[0];
+
+        // توليد الصور المصغرة ديناميكياً
+        const thumbContainer = document.getElementById('thumbnails');
+        productData.images.forEach(imgUrl => {
+            const imgTag = document.createElement('img');
+            imgTag.src = imgUrl;
+            imgTag.className = "w-20 h-20 object-cover cursor-pointer border-2 border-transparent hover:border-green-500 rounded-md transition-all";
+            imgTag.onclick = () => {
+                document.getElementById('main-view').src = imgUrl;
+            };
+            thumbContainer.appendChild(imgTag);
+        });
+    </script>
+</body>
+
+</html>

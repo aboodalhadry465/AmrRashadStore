@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>تفاصيل المنتج - شامبو بانتين انسيابي وحريري</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+</head>
+
+<body class="bg-gray-50">
+
+    <div class="container mx-auto py-10 px-4">
+        <a href="index.html" class="text-blue-600 mb-6 inline-block font-bold">← العودة للرئيسية</a>
+
+        <div class="flex flex-col md:flex-row bg-white rounded-xl shadow-lg overflow-hidden">
+            <div class="md:w-1/2 p-4">
+                <img id="main-view" src="" class="w-full h-96 object-contain bg-gray-100 rounded-lg mb-4 shadow-sm">
+                <div id="thumbnails" class="flex gap-2 overflow-x-auto pb-2">
+                </div>
+            </div>
+
+            <div class="md:w-1/2 p-8">
+                <h1 id="prod-name" class="text-3xl font-bold mb-4 text-gray-800 border-b pb-4"></h1>
+                <p id="prod-price" class="text-2xl text-green-700 font-bold mb-6"></p>
+
+                <h3 class="font-bold mb-2">وصف المنتج:</h3>
+                <div id="prod-desc" class="text-gray-600 leading-relaxed mb-8 whitespace-pre-line">
+                </div>
+
+                <button
+                    class="w-full md:w-auto bg-green-600 hover:bg-green-700 text-white px-10 py-4 rounded-lg font-bold shadow-md transition-all">
+                    تواصل لطلب المنتج
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // بيانات المنتج رقم 106 (Pantene Pro-V Smooth & Silky Shampoo)
+        const productData = {
+            name: "بانتين برو-في (Pantene Pro-V) شامبو انسيابي وحريري ينعم الشعر الأشد خشونة - 1000 مل",
+            price: "السعر حسب العرض",
+            desc: `وداعاً للخشونة وأهلاً بشعر منسدل كالحرير مع قوة برو-في!
+يعمل شامبو بانتين انسيابي وحريري (Pantene Smooth & Silky) على تنظيف شعرك بلطف بينما يمده بمغذيات برو-في النشطة لترطيبه من الداخل إلى الخارج. صُممت هذه التركيبة خصيصاً لتنعيم الشعر الأشد خشونة والتحكم في المتطاير، مما يترك شعرك انسيابياً وناعماً بشكل مذهل.
+
+مميزات المنتج:
+- ينعم الشعر الأشد خشونة: تركيبة متطورة تستهدف خصلات الشعر الجافة والمتمردة لتحويلها إلى خصلات ناعمة ومنسدلة.
+- حماية ضد الرطوبة: يساعد في التحكم في تطاير الشعر ويمنحه مظهراً حريرياً يدوم طويلاً.
+- غني بمغذيات برو-في (Pro-V): يغذي الشعر بعمق ويقويه لمقاومة التلف الناتج عن التصفيف.
+- تنظيف فعال ولطيف: يزيل الشوائب والدهون الزائدة مع الحفاظ على ترطيب الشعر الأساسي.
+- حجم عائلي (1000 مل): سعة اقتصادية كبيرة توفر عناية مستمرة لجميع أفراد العائلة.
+- جودة بانتين العالمية: صُنع في المملكة العربية السعودية بمعايير شركة بروكتر آند جامبل العالمية.
+
+طريقة الاستخدام:
+دلكي الرغوة في شعرك المبلل بحركات دائرية لطيفة لتغطية كامل الفروة والخصلات، ثم اغسلي شعرك جيداً بالماء. كرري العملية عند الحاجة للحصول على أفضل النتائج.`,
+
+            images: [
+                "images/106-pantene-smooth-silky-shampoo/P106-1.jpg",
+                "images/106-pantene-smooth-silky-shampoo/P106-2.jpg"
+            ]
+        };
+
+        // توزيع البيانات على العناصر
+        document.getElementById('prod-name').innerText = productData.name;
+        document.getElementById('prod-price').innerText = productData.price;
+        document.getElementById('prod-desc').innerText = productData.desc;
+        document.getElementById('main-view').src = productData.images[0];
+
+        // توليد الصور المصغرة ديناميكياً
+        const thumbContainer = document.getElementById('thumbnails');
+        productData.images.forEach(imgUrl => {
+            const imgTag = document.createElement('img');
+            imgTag.src = imgUrl;
+            imgTag.className = "w-20 h-20 object-cover cursor-pointer border-2 border-transparent hover:border-green-600 rounded-md transition-all";
+            imgTag.onclick = () => {
+                document.getElementById('main-view').src = imgUrl;
+            };
+            thumbContainer.appendChild(imgTag);
+        });
+    </script>
+</body>
+
+</html>

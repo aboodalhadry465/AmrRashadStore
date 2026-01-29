@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>تفاصيل المنتج - كريم نيفيا الأزرق الأصلي</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+</head>
+
+<body class="bg-gray-50">
+
+    <div class="container mx-auto py-10 px-4">
+        <a href="index.html" class="text-blue-600 mb-6 inline-block font-bold">← العودة للرئيسية</a>
+
+        <div class="flex flex-col md:flex-row bg-white rounded-xl shadow-lg overflow-hidden">
+            <div class="md:w-1/2 p-4">
+                <img id="main-view" src="" class="w-full h-96 object-contain bg-gray-100 rounded-lg mb-4 shadow-sm">
+                <div id="thumbnails" class="flex gap-2 overflow-x-auto pb-2">
+                </div>
+            </div>
+
+            <div class="md:w-1/2 p-8">
+                <h1 id="prod-name" class="text-3xl font-bold mb-4 text-gray-800 border-b pb-4"></h1>
+                <p id="prod-price" class="text-2xl text-blue-800 font-bold mb-6"></p>
+
+                <h3 class="font-bold mb-2">وصف المنتج:</h3>
+                <div id="prod-desc" class="text-gray-600 leading-relaxed mb-8 whitespace-pre-line">
+                </div>
+
+                <button
+                    class="w-full md:w-auto bg-green-600 hover:bg-green-700 text-white px-10 py-4 rounded-lg font-bold shadow-md transition-all">
+                    تواصل لطلب المنتج
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // بيانات المنتج رقم 63 (Nivea Creme - Blue Tin)
+        const productData = {
+            name: "كريم نيفيا (Nivea Creme) المرطب الأصلي للبشرة - العبوة الزرقاء الكلاسيكية - 150 مل",
+            price: "السعر حسب العرض",
+            desc: `العناية الأيقونية والترطيب العميق لكل أفراد العائلة!
+يعد كريم نيفيا الأزرق (Nivea Creme) المرطب رقم 1 في العالم، بتركيبته الغنية التي توفر عناية وحماية فائقة للبشرة. هذا الكريم الكلاسيكي مصمم ليمنح البشرة ترطيباً مكثفاً يتركها ناعمة ومرنة بشكل ملحوظ.
+
+مميزات المنتج:
+- مرطب شامل: مثالي للاستخدام على الوجه، اليدين، وكامل الجسم لتوفير الرطوبة اللازمة في أي وقت.
+- غني بمادة اليوسيريت (Eucerit): تركيبة فريدة مرتبطة بالبشرة تعمل على حبس الرطوبة داخل الجلد وحمايته من الجفاف.
+- ترطيب مكثف: يوفر طبقة حماية غنية تساعد في تلطيف المناطق الجافة والخشنة في الجسم.
+- توافق تام مع البشرة: تم اختباره واعتماده من قبل أطباء الجلد لضمان سلامته على جميع أنواع البشرة.
+- مناسب للجميع: يمكن استخدامه للأطفال والكبار، مما يجعله الخيار الأمثل للعناية العائلية اليومية.
+- الحجم: عبوة 150 مل عملية وسهلة الحمل.
+- جودة ألمانية: صُنع في ألمانيا بواسطة شركة Beiersdorf لضمان أعلى معايير الجودة الأصلية.
+
+طريقة الاستخدام:
+يوضع الكريم يومياً على الوجه والجسم واليدين حسب الحاجة. يُدلك بلطف بحركات دائرية حتى تمتص البشرة التركيبة الغنية بالكامل. يفضل استخدامه بانتظام، خاصة بعد الاستحمام، للحفاظ على بشرة رطبة وصحية دائماً.`,
+
+            images: [
+                "images/63-nivea-creme-blue/P63-1.jpg",
+                "images/63-nivea-creme-blue/P63-2.jpg"
+            ]
+        };
+
+        // توزيع البيانات على العناصر
+        document.getElementById('prod-name').innerText = productData.name;
+        document.getElementById('prod-price').innerText = productData.price;
+        document.getElementById('prod-desc').innerText = productData.desc;
+        document.getElementById('main-view').src = productData.images[0];
+
+        // توليد الصور المصغرة ديناميكياً
+        const thumbContainer = document.getElementById('thumbnails');
+        productData.images.forEach(imgUrl => {
+            const imgTag = document.createElement('img');
+            imgTag.src = imgUrl;
+            imgTag.className = "w-20 h-20 object-cover cursor-pointer border-2 border-transparent hover:border-blue-600 rounded-md transition-all";
+            imgTag.onclick = () => {
+                document.getElementById('main-view').src = imgUrl;
+            };
+            thumbContainer.appendChild(imgTag);
+        });
+    </script>
+</body>
+
+</html>

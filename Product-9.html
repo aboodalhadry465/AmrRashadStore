@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>تفاصيل المنتج</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="bg-gray-50">
+
+    <div class="container mx-auto py-10 px-4">
+        <a href="index.html" class="text-blue-600 mb-6 inline-block font-bold">← العودة للرئيسية</a>
+        
+        <div class="flex flex-col md:flex-row bg-white rounded-xl shadow-lg overflow-hidden">
+            <div class="md:w-1/2 p-4">
+                <img id="main-view" src="" class="w-full h-96 object-cover rounded-lg mb-4">
+                <div id="thumbnails" class="flex gap-2">
+                    </div>
+            </div>
+
+            <div class="md:w-1/2 p-8">
+                <h1 id="prod-name" class="text-3xl font-bold mb-4"></h1>
+                <p id="prod-price" class="text-2xl text-blue-600 font-bold mb-6"></p>
+                <h3 class="font-bold mb-2">وصف المنتج:</h3>
+                <p id="prod-desc" class="text-gray-600 leading-relaxed mb-8"></p>
+                <button class="bg-green-600 text-white px-8 py-3 rounded-lg font-bold">تواصل لطلب المنتج</button>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // كود لجلب بيانات المنتج من الرابط (URL)
+        const params = new URLSearchParams(window.location.search);
+        const prodId = params.get('id');
+
+        // في الواقع سنبحث في البيانات، لكن للتجربة سنعرض بيانات المنتج الأول
+        // (لاحظ: في مرحلة متقدمة سنستخدم قاعدة بيانات، حالياً سنضع البيانات يدوياً)
+        const productData = {
+            name: "لوريال باريس إلفيف سيروم - Extraordinary Oil - مجمّل للشعر الجاف - بزيوت المارولا والكاميليا - 50 مل",
+            price: "1500 ج.م",
+            desc: `  امنحي شعرك الجاف العناية الفاخرة التي يستحقها مع سيروم لوريال إلفيف المجمّل للشعر!
+
+هذا السيروم المتطور من لوريال باريس هو الحل الأمثل لتحويل الشعر الباهت والجاف إلى شعر مفعم بالحيوية واللمعان.يتميز بتركيبة غنية بزيوت ثمينة تشمل زيت المارولا وزيت الكاميليا، ليوفر تغذية عميقة ونعومة فائقة دون إثقال الشعر.
+
+مميزات المنتج:
+
+                تغذية مكثفة: غني بزيوت طبيعية مثل زيت جوز الهند، زيت المارولا، وزيت الكاميليا لتنعيم خصلات الشعر.
+
+متعدد الاستخدامات: يمكن استخدامه قبل الاستحمام للتغذية، قبل التصفيف لحماية الشعر، أو كفنش نهائي للمعان مثالي.
+
+نعومة ولمعان: يمنح الشعر ملمساً ناعماً كالحرير ولمعاناً صحياً جذاباً من أول استخدام.
+
+تركيبة خفيفة: يمتصه الشعر بسهولة ليمنحه مظهراً انسيابياً وحيوية تدوم.
+
+طريقة الاستخدام: ضعي من 3 إلى 4 قطرات على كف يدك وتوزع بالتساوي على طول الشعر المبلل أو الجاف.
+
+قبل الاستحمام: لتغذية عميقة.
+
+قبل التصفيف: لتسهيل التحكم بالشعر وحمايته.
+
+كلمسة نهائية: للسيطرة على الهيشان وإضافة لمعان فائق.
+            
+            `,
+        
+            images: [
+                "images/09-nivea-dry/P9-1.jpg",
+                "images/09-nivea-dry/P9-2.jpg",
+                
+            ]
+        };
+
+        // توزيع البيانات على الصفحة
+        document.getElementById('prod-name').innerText = productData.name;
+        document.getElementById('prod-price').innerText = productData.price;
+        document.getElementById('prod-desc').innerText = productData.desc;
+        document.getElementById('main-view').src = productData.images[0];
+
+        // عرض الصور المصغرة
+        const thumbContainer = document.getElementById('thumbnails');
+        productData.images.forEach(imgUrl => {
+            const imgTag = `<img src="${imgUrl}" onclick="document.getElementById('main-view').src='${imgUrl}'" class="w-20 h-20 object-cover cursor-pointer border-2 hover:border-blue-500 rounded">`;
+            thumbContainer.innerHTML += imgTag;
+        });
+    </script>
+</body>
+</html>

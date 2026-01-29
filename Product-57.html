@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>تفاصيل المنتج - صابون هيمالايا لترطيب غني بالورد</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+</head>
+
+<body class="bg-gray-50">
+
+    <div class="container mx-auto py-10 px-4">
+        <a href="index.html" class="text-blue-600 mb-6 inline-block font-bold">← العودة للرئيسية</a>
+
+        <div class="flex flex-col md:flex-row bg-white rounded-xl shadow-lg overflow-hidden">
+            <div class="md:w-1/2 p-4">
+                <img id="main-view" src="" class="w-full h-96 object-contain bg-gray-100 rounded-lg mb-4 shadow-sm">
+                <div id="thumbnails" class="flex gap-2 overflow-x-auto pb-2">
+                </div>
+            </div>
+
+            <div class="md:w-1/2 p-8">
+                <h1 id="prod-name" class="text-3xl font-bold mb-4 text-gray-800 border-b pb-4"></h1>
+                <p id="prod-price" class="text-2xl text-pink-600 font-bold mb-6"></p>
+
+                <h3 class="font-bold mb-2">وصف المنتج:</h3>
+                <div id="prod-desc" class="text-gray-600 leading-relaxed mb-8 whitespace-pre-line">
+                </div>
+
+                <button
+                    class="w-full md:w-auto bg-green-600 hover:bg-green-700 text-white px-10 py-4 rounded-lg font-bold shadow-md transition-all">
+                    تواصل لطلب المنتج
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // بيانات المنتج رقم 57 (Himalaya Moisture Rich Rose Soap)
+        const productData = {
+            name: "صابون هيمالايا لترطيب غني بالورد (Moisture Rich Rose Soap) - عبوة اقتصادية 6 قطع",
+            price: "السعر حسب العرض",
+            desc: `دللي بشرتك بمزيج فاخر من المكونات الطبيعية لنظافة فائقة وترطيب لا يقاوم!
+يتميز صابون هيمالايا لترطيب غني بالورد (Himalaya Moisture Rich Rose Soap) بتركيبة فريدة تجمع بين فوائد زيت الزيتون وزبدة الكاكاو لتنظيف البشرة بعمق مع الحفاظ على نعومتها. يمنحك عطر الورد المنعش تجربة استحمام تجدد الحواس وتترك بشرتك رطبة ومرنة.
+
+مميزات المنتج:
+- غني بزيت الزيتون وزبدة الكاكاو: مكونات فعالة تعمل على تغذية البشرة وترطيبها بعمق لمنع الجفاف بعد الاستخدام.
+- عطر الورد الساحر: يمنحك رائحة زهرية تدوم طويلاً وتساعد على الانتعاش والاسترخاء.
+- بشرة ناعمة ومرنة: صُمم خصيصاً ليترك البشرة ملساء وحريرية الملمس (Leaves your skin feeling soft and hydrated).
+- عبوة اقتصادية (6 × 125 جم): تحتوي العبوة على 6 قطع من الصابون، مما يجعلها خياراً مثالياً وموفراً للعائلة.
+- جودة هيمالايا منذ عام 1930: تركيبة موثوقة تعتمد على المكونات الطبيعية لضمان أفضل رعاية للبشرة.
+- مختبر جلدياً: آمن للاستخدام اليومي على الوجه والجسم لجميع أفراد العائلة.
+
+طريقة الاستخدام:
+بللي الجسم والوجه بالماء، ثم قومي بفرك الصابونة حتى تحصلي على رغوة غنية. دلكي البشرة بلطف ثم اشطفيها جيداً بالماء. استمتعي بشعور النعومة الفائقة وعطر الورد المنعش.`,
+
+            images: [
+                "images/57-himalaya-rose-soap/P57-1.jpg",
+                "images/57-himalaya-rose-soap/P57-2.jpg"
+            ]
+        };
+
+        // توزيع البيانات على العناصر
+        document.getElementById('prod-name').innerText = productData.name;
+        document.getElementById('prod-price').innerText = productData.price;
+        document.getElementById('prod-desc').innerText = productData.desc;
+        document.getElementById('main-view').src = productData.images[0];
+
+        // توليد الصور المصغرة ديناميكياً
+        const thumbContainer = document.getElementById('thumbnails');
+        productData.images.forEach(imgUrl => {
+            const imgTag = document.createElement('img');
+            imgTag.src = imgUrl;
+            imgTag.className = "w-20 h-20 object-cover cursor-pointer border-2 border-transparent hover:border-pink-400 rounded-md transition-all";
+            imgTag.onclick = () => {
+                document.getElementById('main-view').src = imgUrl;
+            };
+            thumbContainer.appendChild(imgTag);
+        });
+    </script>
+</body>
+
+</html>

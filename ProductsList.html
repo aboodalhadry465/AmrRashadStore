@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>متجري - المعرض الكامل</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+</head>
+
+<body class="bg-gray-100">
+
+    <nav class="bg-white shadow-lg p-4 sticky top-0 z-50">
+        <div class="container mx-auto flex justify-between items-center">
+            <h1 class="text-2xl font-bold text-blue-600">لوجو المتجر</h1>
+            <ul class="flex gap-6">
+                <li><a href="index.html" class="hover:text-blue-500">الرئيسية</a></li>
+                <li><a href="#" class="text-blue-600 font-bold underline">من نحن</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <div class="container mx-auto py-10 px-4">
+        <h2
+            class="text-3xl font-bold text-center mb-10 text-gray-800 border-b-2 border-blue-500 pb-4 inline-block mx-auto w-full md:w-auto">
+            تصفح جميع المنتجات (108 منتج)</h2>
+
+        <div id="products-grid" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+        </div>
+    </div>
+
+    <script>
+        // مصفوفة البيانات الكاملة
+        const products = [
+            { id: 1, name: "لوكس غسول الجسم - ياسمين مخملي", price: "100 ج.م", img: "images/01-lux/P1-1.jpg" },
+            { id: 2, name: "لوكس سائل استحمام - أوركيد سحرية", price: "120 ج.م", img: "images/02-lux/P2-1.jpg" },
+            { id: 3, name: "كريم جونسون للجلسرين - ترطيب مركز", price: "85 ج.م", img: "images/03-johnson/P3-1.jpg" },
+            { id: 4, name: "يوسيرين كريم يوريا ريبير لليدين", price: "450 ج.م", img: "images/04-eucerin/P4-1.jpg" },
+            { id: 5, name: "فيليبس أفينت.. الخيار الأول لنمو صحي وآمن", price: "350 ج.م", img: "images/05-garnier-ultradoux-almond-milk/P5-1.jpg" },
+            { id: 6, name: "موستيلا سيكاستيلا كريم استعادة الترطيب", price: "السعر حسب العرض", img: "images/06-mustela/P6-1.jpg" },
+            { id: 7, name: "نيفيا للرجال فريش أكتيف ستيك", price: "السعر حسب العرض", img: "images/07-nivea-men/P7-1.jpg" },
+            { id: 8, name: "نيفيا لؤلؤ وجمال ستيك للنساء", price: "السعر حسب العرض", img: "images/08-nivea-pearl/P8-1.jpg" },
+            { id: 9, name: "نيفيا للرجال دراي إمباكت ستيك", price: "السعر حسب العرض", img: "images/09-nivea-dry/P9-1.jpg" },
+            { id: 10, name: "سيروم لوريال إلفيف (الزيوت الثمينة)", price: "السعر حسب العرض", img: "images/10-loreal-serum/P10-1.jpg" },
+            { id: 11, name: "سيروم لوريال إلفيف Frizz Killer", price: "السعر حسب العرض", img: "images/11-loreal-frizz/P11-1.jpg" },
+            { id: 12, name: "سيروم لوريال إلفيف بزيت الجوجوبا", price: "السعر حسب العرض", img: "images/12-loreal-jojoba/P12-1.jpg" },
+            { id: 13, name: "سيروم لوريال إلفيف للشعر المصبوغ", price: "السعر حسب العرض", img: "images/13-loreal-colored/P13-1.jpg" },
+            { id: 14, name: "سيروم غارنييه فاست برايت فيتامين سي", price: "السعر حسب العرض", img: "images/14-garnier-vitc/P14-1.jpg" },
+            { id: 15, name: "دابر هيربولين جيلي الصبار", price: "السعر حسب العرض", img: "images/15-herbolene/P15-1.jpg" },
+            { id: 16, name: "ماء ميسيلار نيفيا", price: "السعر حسب العرض", img: "images/16-nivea-micellar/P16-1.jpg" },
+            { id: 17, name: "موستيلا جل منظف لطيف", price: "السعر حسب العرض", img: "images/17-mustela-gel/P17-1.jpg" },
+            { id: 18, name: "كريم نيفيا", price: "السعر حسب العرض", img: "images/18-nivea-creme/P18-1.jpg" },
+            { id: 19, name: "لوريال إلفيف بديل الزيت للشعر المصبوغ", price: "السعر حسب العرض", img: "images/19-loreal-prodigy/P19-1.jpg" },
+            { id: 20, name: "ماء ميسيلار", price: "السعر حسب العرض", img: "images/20-garnier-micellar-vitc/P20-1.jpg" },
+            { id: 21, name: "جل استحمام نيفيا للرجال", price: "السعر حسب العرض", img: "images/21-nivea-men-deep/P21-1.jpg" },
+            { id: 22, name: "موستيلا شامبو لطيف", price: "السعر حسب العرض", img: "images/22-mustela-shampoo/P22-1.jpg" },
+            { id: 23, name: "مرطب شفاه لابيلو", price: "السعر حسب العرض", img: "images/23-labello/P23-1.jpg" },
+            { id: 24, name: "موستيلا كريم فيتامين واقي", price: "السعر حسب العرض", img: "images/24-mustela-barrier/P24-1.jpg" },
+            { id: 25, name: "مرطب شفاه لابيلو الأصلي ", price: "السعر حسب العرض", img: "images/25-labello-original/P25-1.jpg" },
+            { id: 26, name: "لابيلو هيالورون", price: "السعر حسب العرض", img: "images/26-labello-hyaluron/P26-1.jpg" },
+            { id: 27, name: "بخاخ نيفيا للرجال", price: "السعر حسب العرض", img: "images/27-nivea-men-silver/P27-1.jpg" },
+            { id: 28, name: "نيوتروجينا هيدرو بوست", price: "السعر حسب العرض", img: "images/28-neutrogena-hydro/P28-1.jpg" },
+            { id: 29, name: "جلي جونسون للأطفال", price: "السعر حسب العرض", img: "images/29-johnson-jelly/P29-1.jpg" },
+            { id: 30, name: "لاروش بوزيه أنثيليوس", price: "السعر حسب العرض", img: "images/30-laroche-anthelios/P30-1.jpg" },
+            { id: 31, name: "غسول الجسم جونسون فيتا ريتش", price: "السعر حسب العرض", img: "images/31-johnson-vitarich/P31-1.jpg" },
+            { id: 32, name: "سائل استحمام جونسون المضاد للبكتيريا", price: "السعر حسب العرض", img: "images/32-johnson-antibacterial/P32-1.jpg" },
+            { id: 33, name: "سائل استحمام جونسون المضاد للبكتيريا", price: "السعر حسب العرض", img: "images/33-johnson-antibacterial-250/P33-1.jpg" },
+            { id: 34, name: "غسول الجسم جونسون فيتا ريتش", price: "السعر حسب العرض", img: "images/34-johnson-vitarich-jojoba/P34-1.jpg" },
+            { id: 35, name: "يوسيرين مرطب الشفاه الفعال", price: "السعر حسب العرض", img: "images/35-eucerin-lip/P35-1.jpg" },
+            { id: 36, name: "بخاخ نيفيا للرجال", price: "السعر حسب العرض", img: "images/36-nivea-men-dry/P36-1.jpg" },
+            { id: 37, name: "لوريال باريس هيالورون إكسبرت", price: "السعر حسب العرض", img: "images/37-loreal-eye-serum/P37-1.jpg" },
+            { id: 38, name: "ماء ميسيلار غارنييه", price: "السعر حسب العرض", img: "images/38-garnier-micellar-700/P38-1.jpg" },
+            { id: 39, name: "ماء ميسيلار غارنييه", price: "السعر حسب العرض", img: "images/39-garnier-micellar-oil/P39-1.jpg" },
+            { id: 40, name: "مرطب شفاه لابيلو شاين بالكرز ", price: "السعر حسب العرض", img: "images/40-labello-cherry/P40-1.jpg" },
+            { id: 41, name: "مرطب شفاه لابيلو شاين بالبطيخ", price: "السعر حسب العرض", img: "images/41-labello-watermelon/P41-1.jpg" },
+            { id: 42, name: "مرطب شفاه لابيلو شاين بالفراولة", price: "السعر حسب العرض", img: "images/42-labello-strawberry/P42-1.jpg" },
+            { id: 43, name: "مرطب شفاه لابيلو شاين بالتوت الأسود", price: "السعر حسب العرض", img: "images/43-labello-blackberry/P43-1.jpg" },
+            { id: 44, name: "مرطب شفاه لابيلو شاين بالرمان", price: "السعر حسب العرض", img: "images/44-labello-pomegranate/P44-1.jpg" },
+            { id: 45, name: "ميبيلين نيويورك كونسيلر فيت مي", price: "السعر حسب العرض", img: "images/45-maybelline-fitme/P45-1.jpg" },
+            { id: 46, name: "بودرة ميبيلين فيت مي", price: "السعر حسب العرض", img: "images/46-maybelline-fitme-powder/P46-1.jpg" },
+            { id: 47, name: "بودرة ميبيلين نيويورك فيت مي", price: "السعر حسب العرض", img: "images/47-maybelline-fitme-110/P47-1.jpg" },
+            { id: 48, name: "بودرة ميبيلين نيويورك فيت مي", price: "السعر حسب العرض", img: "images/48-maybelline-fitme-220/P48-1.jpg" },
+            { id: 49, name: "بخاخ مزيل عرق نيفيا", price: "السعر حسب العرض", img: "images/49-nivea-pearl-beauty/P49-1.jpg" },
+            { id: 50, name: "بخاخ مزيل عرق نيفيا", price: "السعر حسب العرض", img: "images/50-nivea-black-white-silky/P50-1.jpg" },
+            { id: 51, name: "غارنييه ميسيلار منظف الوجه 100مل", price: "السعر حسب العرض", img: "images/51-garnier-fast-bright/P51-1.jpg" },
+            { id: 52, name: "سيروم غارنييه فاست كلير للحبوب", price: "السعر حسب العرض", img: "images/52-garnier-fast-clear-serum/P52-1.jpg" },
+            { id: 53, name: "هيمالايا جل الصبار", price: "السعر حسب العرض", img: "images/53-himalaya-aloe-gel/P53-1.jpg" },
+            { id: 54, name: "غارنييه فاست برايت", price: "السعر حسب العرض", img: "images/54-himalaya-hair-cream/P54-1.jpg" },
+            { id: 55, name: "هيمالايا كريم للشعر (Softness & Shine)", price: "السعر حسب العرض", img: "images/55-himalaya-nourishing-cream/P55-1.jpg" },
+            { id: 56, name: "هيمالايا كريم مغذي للبشرة", price: "السعر حسب العرض", img: "images/56-himalaya-anti-hairfall/P56-1.jpg" },
+            { id: 57, name: "هيمالايا كريم للشعر ضد تساقط الشعر", price: "السعر حسب العرض", img: "images/57-himalaya-rose-soap/P57-1.jpg" },
+            { id: 58, name: "صابون هيمالايا لترطيب غني بالورد ", price: "السعر حسب العرض", img: "images/58-himalaya-neem-soap/P58-1.jpg" },
+            { id: 59, name: "لاروش بوزيه إيفاكلار", price: "السعر حسب العرض", img: "images/59-laroche-effaclar-gel/P59-1.jpg" },
+            { id: 60, name: "بخاخ مزيل عرق نيفيا للرجال", price: "السعر حسب العرض", img: "images/60-nivea-men-black-white/P60-1.jpg" },
+            { id: 61, name: "فاتيكا حمام كريم بالثوم", price: "السعر حسب العرض", img: "images/61-himalaya-honey-soap/P61-1.jpg" },
+            { id: 62, name: "فاتيكا حمام كريم بالصبار", price: "السعر حسب العرض", img: "images/62-bioderma-atoderm-ultra/P62-1.jpg" },
+            { id: 63, name: "فاتيكا حمام كريم بالحبة السوداء", price: "السعر حسب العرض", img: "images/63-nivea-creme-blue/P63-1.jpg" },
+            { id: 64, name: "فاتيكا كريم تصفيف الشعر باللوز", price: "السعر حسب العرض", img: "images/64-garnier-hairfood-aloe/P64-1.jpg" },
+            { id: 65, name: "فاتيكا كريم تصفيف الشعر بالليمون", price: "السعر حسب العرض", img: "images/65-loreal-elvive-oil/P65-1.jpg" },
+            { id: 66, name: "فاتيكا زيت شعر بالحبة السوداء", price: "السعر حسب العرض", img: "images/66-loreal-elvive-colored/P66-1.jpg" },
+            { id: 67, name: "فاتيكا زيت شعر بالجرجير", price: "السعر حسب العرض", img: "images/67-loreal-elvive-frizz-killer/P67-1.jpg" },
+            { id: 68, name: "دوف صابون قطع أصلي 125جم", price: "السعر حسب العرض", img: "images/68-himalaya-baby-soap/P68-1.jpg" },
+            { id: 69, name: "دوف صابون قطع بزبدة الشيا", price: "السعر حسب العرض", img: "images/69-bioderma-atoderm-creme/P69-1.jpg" },
+            { id: 70, name: "دوف شامبو الإصلاح المركز", price: "السعر حسب العرض", img: "images/70-johnson-vitarich-rose/P70-1.jpg" },
+            { id: 71, name: "دوف بلسم الإصلاح المركز", price: "السعر حسب العرض", img: "images/71-himalaya-shampoo-moisturising/P71-1.jpg" },
+            { id: 72, name: "صانسيلك شامبو قوة ولمعان", price: "السعر حسب العرض", img: "images/72-himalaya-shampoo-gentle/P72-1.jpg" },
+            { id: 73, name: "صانسيلك شامبو تجديد حيوية الشعر", price: "السعر حسب العرض", img: "images/73-himalaya-shampoo-repair/P73-1.jpg" },
+            { id: 74, name: "صانسيلك كريم تصفيف ناعم وانسيابي", price: "السعر حسب العرض", img: "images/74-garnier-ultradoux-almond/P74-1.jpg" },
+            { id: 75, name: "هيد أند شولدرز نظيف وأنيق 400مل", price: "السعر حسب العرض", img: "images/75-johnson-cotton-pads/P75-1.jpg" },
+            { id: 76, name: "هيد أند شولدرز بالنعناع المنعش", price: "السعر حسب العرض", img: "images/76-pantene-oil-replacement-smooth/P76-1.jpg" },
+            { id: 77, name: "هيد أند شولدرز ضد تساقط الشعر", price: "السعر حسب العرض", img: "images/77-pantene-oil-replacement-volume/P77-1.jpg" },
+            { id: 78, name: "كلير شامبو للرجال للتنظيف العميق", price: "السعر حسب العرض", img: "images/78-johnson-vitarich-raspberry/P78-1.jpg" },
+            { id: 79, name: "كلير شامبو للرجال بالنعناع", price: "السعر حسب العرض", img: "images/79-johnson-vitarich-rose-wash/P79-1.jpg" },
+            { id: 80, name: "سيجنال معجون أسنان مكافحة التسوس", price: "السعر حسب العرض", img: "images/80-johnson-vitarich-smoothies/P80-1.jpg" },
+            { id: 81, name: "سيجنال معجون أسنان مبيض", price: "السعر حسب العرض", img: "images/81-nivea-soft-cream/P81-1.jpg" },
+            { id: 82, name: "أكس بخاخ معطر للجسم أبولو", price: "السعر حسب العرض", img: "images/82-neutrogena-hydro-boost-gel/P82-1.jpg" },
+            { id: 83, name: "أكس بخاخ معطر للجسم دارك تيمبتيشن", price: "السعر حسب العرض", img: "images/83-pears-pure-gentle-soap/P83-1.jpg" },
+            { id: 84, name: "كولجيت معجون أسنان بالنعناع", price: "السعر حسب العرض", img: "images/84-himalaya-himalaya-neem-facewash/P84-1.jpg" },
+            { id: 85, name: "كولجيت معجون أسنان هيربل", price: "السعر حسب العرض", img: "images/85-garnier-micellar-water/P85-1.jpg" },
+            { id: 86, name: "فا صابون سائل لليدين", price: "السعر حسب العرض", img: "images/86-lux-jasmine-almond-wash/P86-1.jpg" },
+            { id: 87, name: "فا بخاخ معطر للجسم نسائي", price: "السعر حسب العرض", img: "images/87-garnier-micellar-vitamin-c/P87-1.jpg" },
+            { id: 88, name: "غارنييه ماء ميسيلار غني بالزيت", price: "السعر حسب العرض", img: "images/88-garnier-micellar-oil/P88-1.jpg" },
+            { id: 89, name: "جونسون فيتا ريتش غسول يدين بالتوت", price: "السعر حسب العرض", img: "images/89-johnson-vitarich-raspberry-handwash/P89-1.jpg" },
+            { id: 90, name: "شامبو غارنييه ألترا دو بماء الأرز", price: "السعر حسب العرض", img: "images/90-garnier-ultradoux-rice-water/P90-1.jpg" },
+            { id: 91, name: "جونسون غسول يدين بحليب القطن", price: "السعر حسب العرض", img: "images/91-johnson-vitarich-cotton-milk/P91-1.jpg" },
+            { id: 92, name: "لوكس غسول الجسم سحر الأوركيد", price: "السعر حسب العرض", img: "images/92-lux-magical-orchid-wash/P92-1.jpg" },
+            { id: 93, name: "لوكس غسول الجسم الورد الناعم", price: "السعر حسب العرض", img: "images/93-lux-soft-rose-wash/P93-1.jpg" },
+            { id: 94, name: "صبغة لوريال بروديجي أسود 1.0", price: "السعر حسب العرض", img: "images/94-loreal-prodigy-black/P94-1.jpg" },
+            { id: 95, name: "صبغة لوريال بروديجي أشقر غامق 6.0", price: "السعر حسب العرض", img: "images/95-loreal-prodigy-dark-blonde/P95-1.jpg" },
+            { id: 96, name: "صبغة لوريال بروديجي بني غامق 3.0", price: "السعر حسب العرض", img: "images/96-loreal-prodigy-dark-brown/P96-1.jpg" },
+            { id: 97, name: "صبغة لوريال بروديجي بني 4.0", price: "السعر حسب العرض", img: "images/97-loreal-prodigy-brown/P97-1.jpg" },
+            { id: 98, name: "شامبو نيزورال لعلاج القشرة", price: "السعر حسب العرض", img: "images/98-nizoral-shampoo/P98-1.jpg" },
+            { id: 99, name: "مزيل عرق يورياج باور 3", price: "السعر حسب العرض", img: "images/99-uriage-power3-deodorant/P99-1.jpg" },
+            { id: 100, name: "نيفيا ستيك ناتشورال راديانس", price: "السعر حسب العرض", img: "images/100-nivea-natural-radiance-stick/P100-1.jpg" },
+            { id: 101, name: "معجون دابر بالأعشاب والنيم", price: "السعر حسب العرض", img: "images/101-dabur-herbal-gum-care/P101-1.jpg" },
+            { id: 102, name: "معجون هيمالايا لإزالة البقع", price: "السعر حسب العرض", img: "images/102-himalaya-stain-removal/P102-1.jpg" },
+            { id: 103, name: "معجون هيمالايا بياض فعال", price: "السعر حسب العرض", img: "images/103-himalaya-active-white/P103-1.jpg" },
+            { id: 104, name: "شامبو غارنييه ألترا دو بكنوز العسل", price: "السعر حسب العرض", img: "images/104-garnier-ultradoux-honey/P104-1.jpg" },
+            { id: 105, name: "شامبو غارنييه بالأفوكادو وزبدة الشيا", price: "السعر حسب العرض", img: "images/105-garnier-ultradoux-avocado/P105-1.jpg" },
+            { id: 106, name: "شامبو بانتين انسيابي وحريري 1لتر", price: "السعر حسب العرض", img: "images/106-pantene-smooth-silky-shampoo/P106-1.jpg" },
+            { id: 107, name: "شامبو بانتين ضد تساقط الشعر 1لتر", price: "السعر حسب العرض", img: "images/107-pantene-anti-hair-fall-shampoo/P107-1.jpg" },
+        ];
+
+        const grid = document.getElementById('products-grid');
+
+        products.forEach(product => {
+            const card = `
+            <div class="bg-white p-4 rounded-xl shadow-sm hover:shadow-xl transition-all duration-300 border border-transparent hover:border-blue-200 flex flex-col justify-between h-full">
+                <div>
+                    <div class="overflow-hidden rounded-lg mb-4 bg-gray-50">
+                        <img src="${product.img}" alt="${product.name}" class="w-full h-64 object-contain hover:scale-105 transition-transform duration-300">
+                    </div>
+                    <h3 class="text-lg font-semibold h-14 overflow-hidden text-gray-800 leading-tight mb-2">${product.name}</h3>
+                    <p class="text-blue-600 font-bold text-xl">${product.price}</p>
+                </div>
+                <a href="product-${product.id}.html" class="block text-center w-full mt-4 bg-blue-600 text-white py-3 rounded-lg hover:bg-blue-700 transition shadow-md font-bold text-sm">عرض التفاصيل</a>
+            </div>
+        `;
+            grid.innerHTML += card;
+        });
+    </script>
+</body>
+
+</html>
